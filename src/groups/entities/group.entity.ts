@@ -5,20 +5,17 @@ import {
   ManyToMany,
   JoinTable,
 } from 'typeorm';
-import { Group } from '../../groups/entities/group.entity';
+import { User } from '../../users/entities/user.entity';
 
 @Entity()
-export class User {
+export class Group {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  firstName: string;
+  groupName: string;
 
-  @Column()
-  lastName: string;
-
-  @ManyToMany(() => Group)
+  @ManyToMany(() => User)
   @JoinTable({ name: 'users-groups' })
-  group: Group[];
+  user: User[];
 }
