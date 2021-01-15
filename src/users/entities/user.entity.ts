@@ -18,7 +18,7 @@ export class User {
   @Column()
   lastName: string;
 
-  @ManyToMany(() => Group)
+  @ManyToMany(() => Group, { cascade: true })
   @JoinTable({ name: 'users-groups' })
   group: Group[];
 }
