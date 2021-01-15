@@ -12,7 +12,7 @@ export class UsersService {
     private usersRepository: Repository<User>,
   ) {}
 
-  create(createUserDto: CreateUserDto) {
+  createOrUpdate(createUserDto: CreateUserDto) {
     return this.usersRepository.save(createUserDto);
   }
 
@@ -21,11 +21,7 @@ export class UsersService {
   }
 
   findOne(id: number): Promise<User> {
-    return this.usersRepository.findOne(id);
-  }
-
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return this.usersRepository.update(id, updateUserDto);
+    return this.usersRepository.findOne(id, { relations: ['group'] });
   }
 
   async remove(id: number): Promise<void> {
