@@ -8,8 +8,8 @@ export class GroupsController {
   constructor(private readonly groupsService: GroupsService) {}
 
   @Post()
-  create(@Body() createGroupDto: CreateGroupDto) {
-    return this.groupsService.create(createGroupDto);
+  createOrUpdate(@Body() createGroupDto: CreateGroupDto) {
+    return this.groupsService.createOrUpdate(createGroupDto);
   }
 
   @Get()
@@ -20,11 +20,6 @@ export class GroupsController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.groupsService.findOne(+id);
-  }
-
-  @Put(':id')
-  update(@Param('id') id: string, @Body() updateGroupDto: UpdateGroupDto) {
-    return this.groupsService.update(+id, updateGroupDto);
   }
 
   @Delete(':id')
